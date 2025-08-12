@@ -37,14 +37,7 @@ function showResult() {
     const resultCodeElement = document.getElementById('result-code');
     const resultDescriptionElement = document.getElementById('result-description');
 
-    // 顯示人格代碼
-    resultCodeElement.innerText = personalityCode;
-    
     // 根據不同的人格代碼，顯示對應的描述
-    // 這部分是您可以大展身手的地方！
-    switch (personalityCode) {
-        // 根據不同的人格代碼，顯示對應的描述
-    // --- 這就是我們要替換的全新區塊 ---
     switch (personalityCode) {
         // 分析家 (NT)
         case 'INTJ':
