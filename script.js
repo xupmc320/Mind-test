@@ -103,3 +103,20 @@ function showResult() {
     // 讓結果區塊顯示出來
     resultArea.classList.remove('hidden');
 }
+// --- 我們要新增的函式 ---
+function restartTest() {
+    // 1. 重置所有狀態變數
+    userAnswers.length = 0; // 清空使用者答案陣列
+    currentQuestion = 1;     // 將問題計數器重置回 1
+
+    // 2. 重置使用者介面 (UI)
+    // 隱藏所有問題區塊和結果區塊
+    const allBlocks = document.querySelectorAll('.question-block, #result-area');
+    allBlocks.forEach(block => {
+        block.classList.add('hidden');
+    });
+
+    // 只顯示第一個問題
+    const firstQuestion = document.getElementById('q1');
+    firstQuestion.classList.remove('hidden');
+}

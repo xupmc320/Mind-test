@@ -57,3 +57,13 @@ button:hover {
     color: #333;
     line-height: 1.6;
 }
+/* --- 為新按鈕增加的次要樣式 --- */
+.btn-secondary {
+    background-color: #6c757d; /* 一個沉穩的灰色 */
+    border: 1px solid #6c757d;
+    margin-top: 20px; /* 讓它跟結果描述有點距離 */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* 滑鼠移上去時變深一點 */
+}
