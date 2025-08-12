@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的性格密碼</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="test-container">
+        <h1>探索你的性格密碼</h1>
+        
+        <div id="q1" class="question-block">
+            <p class="question">Q1: 你如何獲得能量？</p>
+            <p class="definition">外向(E): 靠與人相處獲得能量<br>內向(I): 靠獨處獲得能量</p>
+            <button onclick="recordAnswer('E')">外向 (E)</button>
+            <button onclick="recordAnswer('I')">內向 (I)</button>
+        </div>
+
+        <div id="q2" class="question-block hidden">
+            <p class="question">Q2: 你的思維模式是？</p>
+            <p class="definition">感覺(S): 注重具體資訊<br>直覺(N): 憑藉個人臆測</p>
+            <button onclick="recordAnswer('S')">感覺 (S)</button>
+            <button onclick="recordAnswer('N')">直覺 (N)</button>
+        </div>
+
+        <div id="q3" class="question-block hidden">
+            <p class="question">Q3: 你做決策的依據是？</p>
+            <p class="definition">思考(T): 冷靜、客觀<br>情感(F): 感性、體會情緒</p>
+            <button onclick="recordAnswer('T')">思考 (T)</button>
+            <button onclick="recordAnswer('F')">情感 (F)</button>
+        </div>
+
+        <div id="q4" class="question-block hidden">
+            <p class="question">Q4: 你的生活反應是？</p>
+            <p class="definition">判斷(J): 有計畫性<br>感知(P): 隨遇而安</p>
+            <button onclick="recordAnswer('J')">判斷 (J)</button>
+            <button onclick="recordAnswer('P')">感知 (P)</button>
+        </div>
+
+        <div id="result-area" class="hidden">
+            <h2>你的性格密碼是：</h2>
+            <p id="result-code" style="font-size: 2em; font-weight: bold; color: #007bff;"></p>
+            <p id="result-description"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
