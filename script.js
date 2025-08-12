@@ -1,97 +1,72 @@
-// 用一個陣列來儲存使用者的四個答案
 const userAnswers = [];
+let currentQuestionIndex = 0; // 改用索引值 0-3
 
-// 記錄目前回答到第幾題 (從1開始)
-let currentQuestion = 1;
+const questionBlocks = document.querySelectorAll('.question-block');
+const questionArea = document.getElementById('question-area');
+const resultArea = document.getElementById('result-area');
 
-// 這是新的核心函式，處理答題、換題、以及顯示最終結果
 function recordAnswer(answer) {
-    // 1. 將使用者的答案存起來
     userAnswers.push(answer);
-
-    // 2. 隱藏目前的題目
-    const currentQuestionBlock = document.getElementById('q' + currentQuestion);
-    currentQuestionBlock.classList.add('hidden');
-
-    // 3. 推進到下一題
-    currentQuestion++;
-
-    // 4. 檢查是否所有題目都已回答完畢
-    if (currentQuestion > 4) {
-        // 如果是，就顯示結果
-        showResult();
+    
+    // 隱藏目前問題
+    questionBlocks[currentQuestionIndex].classList.add('hidden');
+    
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < questionBlocks.length) {
+        // 顯示下一個問題
+        questionBlocks[currentQuestionIndex].classList.remove('hidden');
     } else {
-        // 如果不是，就顯示下一題
-        const nextQuestionBlock = document.getElementById('q' + currentQuestion);
-        nextQuestionBlock.classList.remove('hidden');
+        // 所有問題回答完畢，顯示結果
+        showResult();
     }
 }
 
-// 這個函式用來顯示最終結果
 function showResult() {
-    // 取得要顯示結果的區域
-    const questionArea = document.getElementById('question-area');
-    const resultArea = document.getElementById('result-area');
     const resultDescriptionElement = document.getElementById('result-description');
-    
-    // ▼▼▼ 以下是本次修改的核心 ▼▼▼
     const resultCodeContainer = document.getElementById('result-code-container');
-
-    // 組合使用者的四個答案，變成最終的人格代碼
     const personalityCode = userAnswers.join('');
 
-    // 1. 清空舊的字母框 (為了「再測一次」功能)
-    resultCodeContainer.innerHTML = '';
-
-    // 2. 將人格代碼拆分成單獨的字母陣列，例如 "ISTJ" -> ["I", "S", "T", "J"]
+    resultCodeContainer.innerHTML = ''; // 清空舊內容
     const letters = personalityCode.split('');
-
-    // 3. 遍歷字母陣列，為每一個字母都建立一個帶有樣式的 DOM 元素
     letters.forEach(letter => {
-        const letterBox = document.createElement('div'); // 建立一個 <div>
-        letterBox.className = 'code-letter';          // 加上我們在 CSS 設計好的樣式
-        letterBox.textContent = letter;               // 把字母放進去
-        resultCodeContainer.appendChild(letterBox);   // 把這個字母框加到容器裡
+        const letterBox = document.createElement('div');
+        letterBox.className = 'code-letter';
+        letterBox.textContent = letter;
+        resultCodeContainer.appendChild(letterBox);
     });
-    // ▲▲▲ 修改核心結束 ▲▲▲
 
-
-    // 根據不同的人格代碼，顯示對應的描述 (這部分不變)
     switch (personalityCode) {
-        case 'ISTJ':
-            resultDescriptionElement.innerText = "你是「物流師」型人格(ISTJ)。你嚴謹、務實且可靠。你尊重事實，履行職責，是組織中不可或缺的穩定力量。";
-            break;
-        case 'ENFP':
-            resultDescriptionElement.innerText = "你是「競選者」型人格(ENFP)。你熱情、富有創造力且善於交際的自由精神，總能找到微笑的理由。";
-            break;
-        // --- 您可以在這裡繼續添加其他14種人格的描述 ---
-        case 'INFP':
-            resultDescriptionElement.innerText = "你是「調停者」型人格(INFP)。你理想主義、忠於自己的價值觀。你看似文靜，內心卻充滿了熱情與火焰。";
-            break;
-        default:
-            resultDescriptionElement.innerText = "為這個獨特的人格組合，寫下屬於您的精彩註解吧！";
-            break;
+        case 'ISTJ': resultDescriptionElement.innerText = "【物流師】你嚴謹、務實且可靠。你尊重事實，履行職責，是組織中不可或缺的穩定力量。"; break;
+        case 'ISFJ': resultDescriptionElement.innerText = "【守衛者】你非常專注而溫暖，時刻準備著保護你所愛的人。你富有同情心，且極度忠誠。"; break;
+        case 'INFJ': resultDescriptionElement.innerText = "【提倡者】你安靜而神秘，但又鼓舞人心且不知疲倦的理想主義者。你深刻、有遠見，並希望能對世界產生正面的影響。"; break;
+        case 'INTJ': resultDescriptionElement.innerText = "【建築師】你富有想像力和策略性的思想家，凡事都有計畫。你มอง得遠，並致力於將想法付諸實現。"; break;
+        case 'ISTP': resultDescriptionElement.innerText = "【鑑賞家】你大膽而務實的實驗家，精通所有類型的工具。你享受動手解決問題的過程。"; break;
+        case 'ISFP': resultDescriptionElement.innerText = "【探險家】你靈活而迷人的藝術家，總是準備好探索和體驗新事物。你活在當下，並從五官感受中尋找樂趣。"; break;
+        case 'INFP': resultDescriptionElement.innerText = "【調停者】你詩意、善良且利他，總是準備好幫助有需要的人。你看似文靜，內心卻充滿了熱情與火焰。"; break;
+        case 'INTP': resultDescriptionElement.innerText = "【邏輯學家】你充滿創造力的發明家，對知識有著無法抑制的渴望。你享受探索理論與觀念，尋找事物背後的邏輯。"; break;
+        case 'ESTP': resultDescriptionElement.innerText = "【企業家】你聰明、精力充沛且極具洞察力的人，享受冒險和活在當下。你善於抓住機會，並將其轉化為現實。"; break;
+        case 'ESFP': resultDescriptionElement.innerText = "【表演者】你自發、精力充沛且熱情的表演者，他們周圍的生活從不沉悶。你熱愛成為眾人焦點，為大家帶來歡樂。"; break;
+        case 'ENFP': resultDescriptionElement.innerText = "【競選者】你熱情、富有創造力且善於交際的自由靈魂，總能找到微笑的理由。你充滿活力，善於激勵他人。"; break;
+        case 'ENTP': resultDescriptionElement.innerText = "【辯論家】你聰明好奇的思想者，無法抗拒任何智力上的挑戰。你熱愛腦力激盪，從不同角度探索問題。"; break;
+        case 'ESTJ': resultDescriptionElement.innerText = "【總經理】你出色的管理者，在管理事務或人員方面無與倫比。你果斷、有條理，並專注於達成結果。"; break;
+        case 'ESFJ': resultDescriptionElement.innerText = "【執政官】你極富同情心、善於交際且受歡迎的人，總是熱心幫助他人。你享受和諧的社群生活。"; break;
+        case 'ENFJ': resultDescriptionElement.innerText = "【主人公】你富有魅力和鼓舞人心的領導者，能夠吸引聽眾並對他們產生正面的影響。"; break;
+        case 'ENTJ': resultDescriptionElement.innerText = "【指揮官】你大膽、富有想像力且意志堅強的領導者，總能找到或創造解決辦法。你天生就能夠帶領團隊，實現共同目標。"; break;
+        default: resultDescriptionElement.innerText = "為這個獨特的人格組合，寫下屬於您的精彩註解吧！"; break;
     }
 
-    // 隱藏問題，顯示結果 (這部分不變)
     questionArea.classList.add('hidden');
     resultArea.classList.remove('hidden');
 }
-}
-// --- 我們要新增的函式 ---
+
 function restartTest() {
-    // 1. 重置所有狀態變數
-    userAnswers.length = 0; // 清空使用者答案陣列
-    currentQuestion = 1;     // 將問題計數器重置回 1
-
-    // 2. 重置使用者介面 (UI)
-    // 隱藏所有問題區塊和結果區塊
-    const allBlocks = document.querySelectorAll('.question-block, #result-area');
-    allBlocks.forEach(block => {
-        block.classList.add('hidden');
-    });
-
-    // 只顯示第一個問題
-    const firstQuestion = document.getElementById('q1');
-    firstQuestion.classList.remove('hidden');
+    userAnswers.length = 0;
+    currentQuestionIndex = 0;
+    
+    resultArea.classList.add('hidden');
+    questionBlocks.forEach(block => block.classList.add('hidden'));
+    
+    questionArea.classList.remove('hidden');
+    questionBlocks[0].classList.remove('hidden');
 }

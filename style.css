@@ -15,6 +15,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 500px;
+    min-height: 300px;
 }
 
 h1 {
@@ -23,7 +24,14 @@ h1 {
 
 .question {
     font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.definition {
+    font-size: 0.9em;
+    color: #666;
     margin-bottom: 20px;
+    line-height: 1.5;
 }
 
 button {
@@ -52,27 +60,28 @@ button:hover {
     margin-top: 30px;
 }
 
-#result-text {
+#result-description {
     font-size: 1.1em;
     color: #333;
     line-height: 1.6;
+    text-align: left;
 }
-/* --- 為新按鈕增加的次要樣式 --- */
+
 .btn-secondary {
-    background-color: #6c757d; /* 一個沉穩的灰色 */
+    background-color: #6c757d;
     border: 1px solid #6c757d;
-    margin-top: 20px; /* 讓它跟結果描述有點距離 */
+    margin-top: 20px;
 }
 
 .btn-secondary:hover {
-    background-color: #5a6268; /* 滑鼠移上去時變深一點 */
+    background-color: #5a6268;
 }
-/* --- 新增的結果代碼樣式 --- */
+
 #result-code-container {
     display: flex;
     justify-content: center;
-    gap: 10px; /* 框框之間的間距 */
-    margin: 20px 0; /* 上下邊距 */
+    gap: 10px;
+    margin: 20px 0;
 }
 
 .code-letter {
