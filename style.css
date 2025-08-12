@@ -67,3 +67,24 @@ button:hover {
 .btn-secondary:hover {
     background-color: #5a6268; /* 滑鼠移上去時變深一點 */
 }
+/* --- 新增的結果代碼樣式 --- */
+#result-code-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 框框之間的間距 */
+    margin: 20px 0; /* 上下邊距 */
+}
+
+.code-letter {
+    border: 2px solid #007bff;
+    color: #007bff;
+    width: 50px;
+    height: 50px;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
